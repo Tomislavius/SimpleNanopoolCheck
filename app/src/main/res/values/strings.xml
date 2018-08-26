@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Simple Nanopool Check</string>
+    <string name="hint_wallet_address">Type or paste your wallet address!</string>
+    <string name="save">SAVE</string>
+    <string name="get_info">GET INFO</string>
+    <string name="title_activity_result">ResultActivity</string>
+    <string name="balance_payout">Balance Payout:</string>
+    <string name="hashrate">Hashrate:</string>
+    <string name="hashrateTitle">Mhs</string>
+    <string name="balance_ether">Balance:</string>
+</resources>
