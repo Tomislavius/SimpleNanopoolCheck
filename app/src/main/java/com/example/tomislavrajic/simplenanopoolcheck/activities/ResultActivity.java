@@ -7,6 +7,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
+import com.example.tomislavrajic.simplenanopoolcheck.models.ResponseDataBalance;
+import com.example.tomislavrajic.simplenanopoolcheck.models.ResponseDataEtherscan;
+import com.example.tomislavrajic.simplenanopoolcheck.models.ResponseDataReportedHashrates;
+import com.example.tomislavrajic.simplenanopoolcheck.networking.EtherscanAPI;
+import com.example.tomislavrajic.simplenanopoolcheck.networking.NanopoolAPI;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -84,7 +90,7 @@ public class ResultActivity extends AppCompatActivity {
                     @NonNull Response<ResponseDataReportedHashrates> response) {
                 mLayoutManager = new LinearLayoutManager(ResultActivity.this);
                 mRecyclerView.setLayoutManager(mLayoutManager);
-                mWorkerAdapter = new WorkerAdapter(response.body().getData());
+                mWorkerAdapter = new WorkerRecyclerViewAdapter(response.body().getData());
                 mRecyclerView.setAdapter(mWorkerAdapter);
 
             }

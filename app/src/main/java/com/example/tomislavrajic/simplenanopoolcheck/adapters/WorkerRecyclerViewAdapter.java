@@ -7,13 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.tomislavrajic.simplenanopoolcheck.models.ReportedHashrates;
+
 import java.util.ArrayList;
 
-public class WorkerAdapter extends RecyclerView.Adapter<WorkerAdapter.WorkerHolder> {
+public class WorkerRecyclerViewAdapter extends RecyclerView.Adapter<WorkerRecyclerViewAdapter.WorkerHolder> {
 
     private ArrayList<ReportedHashrates> reportedHashrates;
 
-    WorkerAdapter(ArrayList<ReportedHashrates> reportedHashrates) {
+    WorkerRecyclerViewAdapter(ArrayList<ReportedHashrates> reportedHashrates) {
         this.reportedHashrates = reportedHashrates;
     }
 

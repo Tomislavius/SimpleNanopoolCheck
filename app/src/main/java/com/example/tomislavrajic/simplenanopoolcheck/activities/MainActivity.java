@@ -3,14 +3,17 @@ package com.example.tomislavrajic.simplenanopoolcheck;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.example.tomislavrajic.simplenanopoolcheck.models.ResponseDataBalance;
+import com.example.tomislavrajic.simplenanopoolcheck.networking.NanopoolAPI;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         Button mGetInfoButton = findViewById(R.id.get_info_button);
 
         sharedpreferences = getSharedPreferences(ADDRESS_PREFERENCES, Context.MODE_PRIVATE);
-        mWalletAddress.setText(sharedpreferences.getString(WALLET_ADDRESS,"No data!"));
+        mWalletAddress.setText(sharedpreferences.getString(WALLET_ADDRESS, "No data!"));
 
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,9 +48,9 @@ public class MainActivity extends AppCompatActivity {
 
                 SharedPreferences.Editor editor = sharedpreferences.edit();
 
-                editor.putString("walletAddress",addressInput);
+                editor.putString("walletAddress", addressInput);
                 editor.apply();
-                Toast.makeText(MainActivity.this,"WALLET ADDRESS SAVED!", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "WALLET ADDRESS SAVED!", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -60,13 +63,17 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(@NonNull Call<ResponseDataBalance> call, @NonNull Response<ResponseDataBalance> response) {
-                        Intent intent = new Intent(MainActivity.this, ResultActivity.class);
-                        assert response.body() != null;
-                        intent.putExtra(BALANCE_PAYOUT, response.body().getData());
-                        intent.putExtra("address", walletAddress);
-                        startActivity(intent);
-                        progressBar.setVisibility(View.GONE);
-
+                        if (response.body().isStatus()) {
+                            Intent intent = new Intent(MainActivity.this, ResultActivity.class);
+                            assert response.body() != null;
+                            intent.putExtra(BALANCE_PAYOUT, response.body().getData());
+                            intent.putExtra("address", walletAddress);
+                            startActivity(intent);
+                            progressBar.setVisibility(View.GONE);
+                        } else {
+                            progressBar.setVisibility(View.GONE);
+                            Toast.makeText(MainActivity.this, "Account not found!", Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                     @Override
