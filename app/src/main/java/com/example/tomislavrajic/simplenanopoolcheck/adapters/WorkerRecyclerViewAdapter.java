@@ -1,4 +1,4 @@
-package com.example.tomislavrajic.simplenanopoolcheck;
+package com.example.tomislavrajic.simplenanopoolcheck.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.tomislavrajic.simplenanopoolcheck.R;
 import com.example.tomislavrajic.simplenanopoolcheck.models.ReportedHashrates;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class WorkerRecyclerViewAdapter extends RecyclerView.Adapter<WorkerRecycl
 
     private ArrayList<ReportedHashrates> reportedHashrates;
 
-    WorkerRecyclerViewAdapter(ArrayList<ReportedHashrates> reportedHashrates) {
+    public WorkerRecyclerViewAdapter(ArrayList<ReportedHashrates> reportedHashrates) {
         this.reportedHashrates = reportedHashrates;
     }
 

@@ -1,4 +1,4 @@
-package com.example.tomislavrajic.simplenanopoolcheck;
+package com.example.tomislavrajic.simplenanopoolcheck.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.tomislavrajic.simplenanopoolcheck.R;
 import com.example.tomislavrajic.simplenanopoolcheck.models.ResponseDataBalance;
 import com.example.tomislavrajic.simplenanopoolcheck.networking.NanopoolAPI;
 
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
                 editor.putString("walletAddress", addressInput);
                 editor.apply();
-                Toast.makeText(MainActivity.this, "WALLET ADDRESS SAVED!", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "Wallet address saved!", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -71,8 +72,8 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(intent);
                             progressBar.setVisibility(View.GONE);
                         } else {
-                            progressBar.setVisibility(View.GONE);
                             Toast.makeText(MainActivity.this, "Account not found!", Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.GONE);
                         }
                     }
 

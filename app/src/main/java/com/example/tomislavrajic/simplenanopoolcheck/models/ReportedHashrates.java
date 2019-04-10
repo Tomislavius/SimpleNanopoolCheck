@@ -1,4 +1,4 @@
-package com.example.tomislavrajic.simplenanopoolcheck;
+package com.example.tomislavrajic.simplenanopoolcheck.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

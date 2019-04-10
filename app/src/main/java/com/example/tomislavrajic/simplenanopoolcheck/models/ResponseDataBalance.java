@@ -1,13 +1,15 @@
-package com.example.tomislavrajic.simplenanopoolcheck;
+package com.example.tomislavrajic.simplenanopoolcheck.models;
 
 public class ResponseDataBalance {
+
     private double data;
+    private boolean status;
 
     public double getData() {
         return data;
     }
 
-    public void setData(double data) {
-        this.data = data;
+    public boolean isStatus() {
+        return status;
     }
 }

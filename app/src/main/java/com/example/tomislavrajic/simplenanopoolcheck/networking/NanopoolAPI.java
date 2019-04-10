@@ -1,4 +1,8 @@
-package com.example.tomislavrajic.simplenanopoolcheck;
+package com.example.tomislavrajic.simplenanopoolcheck.networking;
+
+import com.example.tomislavrajic.simplenanopoolcheck.models.ResponseDataBalance;
+import com.example.tomislavrajic.simplenanopoolcheck.models.ResponseDataReportedHashrates;
+import com.example.tomislavrajic.simplenanopoolcheck.models.ResponseDataWorkers;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;

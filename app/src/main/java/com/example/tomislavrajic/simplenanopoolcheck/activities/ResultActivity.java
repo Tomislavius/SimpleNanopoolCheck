@@ -1,4 +1,4 @@
-package com.example.tomislavrajic.simplenanopoolcheck;
+package com.example.tomislavrajic.simplenanopoolcheck.activities;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,6 +7,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
+import com.example.tomislavrajic.simplenanopoolcheck.R;
+import com.example.tomislavrajic.simplenanopoolcheck.adapters.WorkerRecyclerViewAdapter;
 import com.example.tomislavrajic.simplenanopoolcheck.models.ResponseDataBalance;
 import com.example.tomislavrajic.simplenanopoolcheck.models.ResponseDataEtherscan;
 import com.example.tomislavrajic.simplenanopoolcheck.models.ResponseDataReportedHashrates;

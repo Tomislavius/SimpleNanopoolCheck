@@ -1,4 +1,4 @@
-package com.example.tomislavrajic.simplenanopoolcheck;
+package com.example.tomislavrajic.simplenanopoolcheck.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -12,7 +12,7 @@ public class ResponseDataWorkers {
     private Boolean status;
     @SerializedName("data")
     @Expose
-    private List<Workers> data = null;
+    private List<Worker> data = null;
 
     public Boolean getStatus() {
         return status;
@@ -22,11 +22,11 @@ public class ResponseDataWorkers {
         this.status = status;
     }
 
-    public List<Workers> getData() {
+    public List<Worker> getData() {
         return data;
     }
 
-    public void setData(List<Workers> data) {
+    public void setData(List<Worker> data) {
         this.data = data;
     }
 }
