@@ -18,15 +18,7 @@ public class ResponseDataWorkers {
         return status;
     }
 
-    public void setStatus(Boolean status) {
-        this.status = status;
-    }
-
     public List<Worker> getData() {
         return data;
-    }
-
-    public void setData(List<Worker> data) {
-        this.data = data;
     }
 }

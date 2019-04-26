@@ -8,4 +8,11 @@
     <string name="hashrate">Hashrate:</string>
     <string name="hashrateTitle">Mhs</string>
     <string name="balance_ether">Balance:</string>
+    <string name="no_data">No data!</string>
+    <string name="wallet_address_saved">Wallet address saved!</string>
+    <string name="account_not_found">Account not found!</string>
+    <string name="failed_to_connect">Failed to connect!</string>
+    <string name="failed_to_get_reported_hashrate">Failed to get reported hashrate!</string>
+    <string name="failed_to_get_balance">Failed to get balance!</string>
+    <string name="failed_to_get_reported_hashrates">Failed to get repoerted hashrates!</string>
 </resources>

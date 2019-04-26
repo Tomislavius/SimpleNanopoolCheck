@@ -8,6 +8,7 @@ public class ReportedHashrates {
     @SerializedName("worker")
     @Expose
     private String worker;
+
     @SerializedName("hashrate")
     @Expose
     private Double hashrate;

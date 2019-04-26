@@ -10,6 +10,7 @@ public class ResponseDataReportedHashrates {
     @SerializedName("status")
     @Expose
     private Boolean status;
+
     @SerializedName("data")
     @Expose
     private ArrayList<ReportedHashrates> data = null;
@@ -18,15 +19,7 @@ public class ResponseDataReportedHashrates {
         return status;
     }
 
-    public void setStatus(Boolean status) {
-        this.status = status;
-    }
-
     public ArrayList<ReportedHashrates> getData() {
         return data;
-    }
-
-    public void setData(ArrayList<ReportedHashrates> data) {
-        this.data = data;
     }
 }

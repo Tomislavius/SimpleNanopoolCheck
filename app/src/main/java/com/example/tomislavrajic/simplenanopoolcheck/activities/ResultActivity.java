@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tomislavrajic.simplenanopoolcheck.R;
 import com.example.tomislavrajic.simplenanopoolcheck.adapters.WorkerRecyclerViewAdapter;
@@ -34,7 +35,7 @@ public class ResultActivity extends AppCompatActivity {
 
         final TextView balancePayout = findViewById(R.id.balance_payout);
         double balPayout = getIntent().getDoubleExtra(MainActivity.BALANCE_PAYOUT, 0);
-        String address = getIntent().getStringExtra("address");
+        String address = getIntent().getStringExtra(MainActivity.ADDRESS);
         balancePayout.setText(String.valueOf(balPayout).substring(0, 12));
 
         getReportedHashrate(address);
@@ -55,6 +56,7 @@ public class ResultActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Call<ResponseDataBalance> call, @NonNull Throwable t) {
 
+                Toast.makeText(ResultActivity.this, R.string.failed_to_get_reported_hashrate, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -78,6 +80,8 @@ public class ResultActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(@NonNull Call<ResponseDataEtherscan> call, @NonNull Throwable t) {
+
+                        Toast.makeText(ResultActivity.this, R.string.failed_to_get_balance, Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -88,8 +92,8 @@ public class ResultActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(
-                    @NonNull Call<ResponseDataReportedHashrates> call,
-                    @NonNull Response<ResponseDataReportedHashrates> response) {
+
+                    @NonNull Call<ResponseDataReportedHashrates> call, @NonNull Response<ResponseDataReportedHashrates> response) {
                 mLayoutManager = new LinearLayoutManager(ResultActivity.this);
                 mRecyclerView.setLayoutManager(mLayoutManager);
                 mWorkerAdapter = new WorkerRecyclerViewAdapter(response.body().getData());
@@ -99,8 +103,9 @@ public class ResultActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(@NonNull Call<ResponseDataReportedHashrates> call, @NonNull Throwable t) {
+
+                Toast.makeText(ResultActivity.this, R.string.failed_to_get_reported_hashrates, Toast.LENGTH_SHORT).show();
             }
         });
     }
-
 }

@@ -8,15 +8,19 @@ public class Worker {
     @SerializedName("uid")
     @Expose
     private Integer uid;
+
     @SerializedName("id")
     @Expose
     private String id;
+
     @SerializedName("hashrate")
     @Expose
     private Integer hashrate;
+
     @SerializedName("lastShare")
     @Expose
     private Integer lastShare;
+
     @SerializedName("rating")
     @Expose
     private Integer rating;

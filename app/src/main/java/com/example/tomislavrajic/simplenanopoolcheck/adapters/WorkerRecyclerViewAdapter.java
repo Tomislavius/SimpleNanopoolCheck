@@ -41,11 +41,13 @@ public class WorkerRecyclerViewAdapter extends RecyclerView.Adapter<WorkerRecycl
     }
 
     class WorkerHolder extends RecyclerView.ViewHolder {
+
         private TextView mTextView;
         private TextView mWorkerName;
 
         private WorkerHolder(@NonNull View itemView) {
             super(itemView);
+
             mWorkerName = itemView.findViewById(R.id.worker_name);
             mTextView = itemView.findViewById(R.id.worker_hashrate);
         }

@@ -25,41 +25,43 @@ public class MainActivity extends AppCompatActivity {
     public static final String BALANCE_PAYOUT = "balancePayout";
     public static final String ADDRESS_PREFERENCES = "addressPrefs";
     public static final String WALLET_ADDRESS = "walletAddress";
+    public static final String ADDRESS = "address";
 
-    private EditText mWalletAddress;
-    private SharedPreferences sharedpreferences;
+    private EditText walletAddress;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mWalletAddress = findViewById(R.id.wallet_address);
+        walletAddress = findViewById(R.id.wallet_address);
         final ProgressBar progressBar = findViewById(R.id.progress_bar);
-        Button mSaveButton = findViewById(R.id.save_button);
-        Button mGetInfoButton = findViewById(R.id.get_info_button);
+        Button saveButton = findViewById(R.id.save_bt);
+        Button getInfoButton = findViewById(R.id.get_info_bt);
 
-        sharedpreferences = getSharedPreferences(ADDRESS_PREFERENCES, Context.MODE_PRIVATE);
-        mWalletAddress.setText(sharedpreferences.getString(WALLET_ADDRESS, "No data!"));
+        sharedPreferences = getSharedPreferences(ADDRESS_PREFERENCES, Context.MODE_PRIVATE);
+        walletAddress.setText(sharedPreferences.getString(WALLET_ADDRESS, getString(R.string.no_data)));
 
-        mSaveButton.setOnClickListener(new View.OnClickListener() {
+        saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String addressInput = mWalletAddress.getText().toString();
 
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-
-                editor.putString("walletAddress", addressInput);
+                String addressInput = walletAddress.getText().toString();
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(WALLET_ADDRESS, addressInput);
                 editor.apply();
-                Toast.makeText(MainActivity.this, "Wallet address saved!", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, R.string.wallet_address_saved, Toast.LENGTH_SHORT).show();
             }
         });
 
-        mGetInfoButton.setOnClickListener(new View.OnClickListener() {
+        getInfoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 progressBar.setVisibility(View.VISIBLE);
-                final String walletAddress = mWalletAddress.getText().toString();
+
+                final String walletAddress = MainActivity.this.walletAddress.getText().toString();
                 NanopoolAPI.service.getBalancePayout(walletAddress).enqueue(new Callback<ResponseDataBalance>() {
 
                     @Override
@@ -68,17 +70,21 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(MainActivity.this, ResultActivity.class);
                             assert response.body() != null;
                             intent.putExtra(BALANCE_PAYOUT, response.body().getData());
-                            intent.putExtra("address", walletAddress);
+                            intent.putExtra(ADDRESS, walletAddress);
                             startActivity(intent);
                             progressBar.setVisibility(View.GONE);
                         } else {
-                            Toast.makeText(MainActivity.this, "Account not found!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, R.string.account_not_found, Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);
                         }
                     }
 
                     @Override
                     public void onFailure(@NonNull Call<ResponseDataBalance> call, @NonNull Throwable t) {
+
+                        progressBar.setVisibility(View.GONE);
+
+                        Toast.makeText(MainActivity.this, R.string.failed_to_connect, Toast.LENGTH_SHORT).show();
                     }
                 });
             }
